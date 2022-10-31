@@ -30,16 +30,16 @@ registerRoute(({ request }) => request.mode === "navigate", pageCache);
 registerRoute(
   ({ request }) => ["style", "script", "worker"].includes(request.desitnation),
   new CacheFirst({
-    cacheName: "asset-cache",
+    cacheName: "jate-cache",
     plugins: [
       new CacheableResponsePlugin({
         statuses: [0, 200],
+      }),
+      new offlineFallback({
+        pageFallback: "index.html",
       }),
     ],
   })
 );
 
-offlineFallback({
-  pageFallback: "index.html",
-});
 registerRoute();
