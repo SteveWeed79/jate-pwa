@@ -1,4 +1,3 @@
-import { text } from "express";
 import { openDB } from "idb";
 
 const initdb = async () =>
